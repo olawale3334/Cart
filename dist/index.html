@@ -3,9 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
     <title>CART</title>
 </head>
 <body>
+    <header class="bg-[#121721] fixed top-0 left-0 right-0">
+  <nav class="flex justify-between items-center md:mx-10 py-2">
     
+    <div class="flex items-center">
+      <span class="md:text-4xl text-white">ULTIMATE</span>
+    </div>
+    <div class="relative">
+      <input
+            type="search"placeholder="Search..."
+            class="md:pl-10 md:pr-4 py-2 border  border-gray-400 rounded"
+        />
+      <img
+            src="/img/search-icon.png"
+            alt="Search"
+            class="absolute right-1 md:left-2 top-1/2 transform -translate-y-1/2 w-5 h-5"
+      />
+    </div>
+    <div id="cart" class="relative text-white flex items-center ">
+      <a href="#" class=" hidden items-center md:flex space-x-1 ">
+            <div class="relative"><img src="/img/cart-icon.png" alt="Cart" class="w-full h-8  " /></div> 
+            <div class=" font-semibold absolute left-4 bottom-2 text-xl text-[#ff9f00]">0</div>
+            <span  class="  font-bold text-xl">Cart</span>
+      </a>
+    </div>
+    <div class="flex items-center md:hidden">
+        <button id="menu-btn" class="inline-flex items-center justify-center p-2 rounded-md text-lime-50 hover:text-lime-200 focus:text-lime-300 z-[100] relative">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </div>
+    <div id="mobile-menu" class=" fixed   left-0 shadow-md  bg-black z-50 pt-16  hidden  md:hidden">
+        <a href="" class="">cart()</a>
+    </div>
+  </nav>
+</header>
 </body>
 </html>
