@@ -409,18 +409,18 @@
     menu.classList.toggle("hidden");
   });
 
- // Get all add buttons and select options
+ 
 const addBtns = document.querySelectorAll('.add-btn');
 const selectOptions = document.querySelectorAll('.select-option');
 const cartValue = document.querySelector('#cartQ #cartValue');
 const mobileCartValue = document.querySelector('#mobile-menu #cartValue');
 
-// Load total quantity from localStorage or initialize
+
 let total = localStorage.getItem('cartTotal') ? parseInt(localStorage.getItem('cartTotal')) : 0;
 cartValue.textContent = `(${total})`;
 mobileCartValue.textContent = `cart(${total})`;
 
-// Loop through add buttons and attach event listeners
+
 addBtns.forEach((addBtn, index) => {
   addBtn.addEventListener('click', () => {
     const quantity = parseInt(selectOptions[index].value);
@@ -430,7 +430,7 @@ addBtns.forEach((addBtn, index) => {
     const price = parseFloat(priceText);
     const image = productCard.querySelector("img").src;
     const item = {
-      id: `product${index}`, // Unique ID for each product
+      id: `product${index}`, 
       name,
       price,
       quantity,
@@ -442,7 +442,7 @@ addBtns.forEach((addBtn, index) => {
     if (existingIndex !== -1) {
       cart[existingIndex].quantity += quantity;
     } else {
-      item.quantity = quantity; // Assign quantity to item
+      item.quantity = quantity; 
       cart.push(item);
     }
 
@@ -452,7 +452,7 @@ addBtns.forEach((addBtn, index) => {
     localStorage.setItem('cartTotal', total);
     cartValue.textContent = `(${total})`;
     mobileCartValue.textContent = `${total}`;
-   // alert(`${quantity} item(s) added to cart!`);
+   
 
    addBtn.textContent = "Added!";
   addBtn.classList.add("text-green-600");

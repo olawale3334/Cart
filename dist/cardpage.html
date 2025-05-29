@@ -70,7 +70,6 @@
   }
 
   function attachEvents() {
-    // Quantity change event
     document.querySelectorAll('.qty-input').forEach(input => {
       input.addEventListener('input', e => {
         const index = parseInt(e.target.dataset.index);
@@ -78,17 +77,16 @@
         if (isNaN(newQty) || newQty < 1) newQty = 1;
         cart[index].quantity = newQty;
 
-        // Update localStorage and re-render cart
         localStorage.setItem('cart', JSON.stringify(cart));
         renderCart();
 
-        // Also update total quantity badge on index page via localStorage
+        
         const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
         localStorage.setItem('cartTotal', totalQty);
       });
     });
 
-    // Delete item event
+   
     document.querySelectorAll('.delete-btn').forEach(btn => {
       btn.addEventListener('click', e => {
         const index = parseInt(e.target.dataset.index);
@@ -102,7 +100,6 @@
     });
   }
 
-  // Clear Cart Button
   clearBtn.addEventListener("click", () => {
     localStorage.removeItem("cart");
     localStorage.removeItem("cartTotal");
