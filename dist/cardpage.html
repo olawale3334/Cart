@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+      <div>
+        <a href="index.html" class="text-blue-600 underline ml-10 ">back</a>
+      </div>
+        <div class="mx-10 text-center text-orange-600 mb-5 text-3xl">
+            Preview your order
+        </div>
+        <div class="md:flex  justify-around ">
+            <div id="cartItems" class="mx-5 shadow-lg   mb-5"> </div>
+            <div class="bg-[#ffffff] shadow-lg  border-[2px] border-gray-400 mx-5 md:w-[18rem] h-[18rem]">
+                <h1 class="font-bold text-3xl  mx-5">order summary</h1>
+                <div class="flex  mx-5 mt-5 items-center" >
+                     <p   class="text-orange-600  font-bold mx-5"> order total</p>
+                     <h3>Total: $<span  id="totalAmount" >$0.00</span></h3>
+                </div>
+                 <hr class="mx-5">
+                 <button id="clear-cart" class="mx-5 mt-6 bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-2 rounded shadow-lg">Clear Cart</button>
+                <button class=" mx-5 mt-6 bg-yellow-500  hover:bg-yellow-600 text-white py-2 px-10 rounded-2xl">place your order</button>
+            </div>
+        </div>
+    </div>
+ <script>
+  
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const cartItemsContainer = document.getElementById("cartItems");
+  const totalAmountEl = document.getElementById("totalAmount");
+  const clearBtn = document.getElementById("clear-cart");
+
+  function renderCart() {
+    cartItemsContainer.innerHTML = '';
+    let total = 0;
+
+    cart.forEach((item, index) => {
+      const itemTotal = item.quantity * item.price;
+      total += itemTotal;
+
+      const div = document.createElement('div');
+      div.className = 'flex items-center justify-between border p-4 rounded gap-4';
+
+      div.innerHTML = `
+        <div class="flex items-center gap-4">
+          <img src="${item.image}" width="80" class="rounded" onerror="this.src='/img/placeholder.png';" />
+          <div>
+            <p class="font-bold">${item.name}</p>
+            <p>Price: $${item.price.toFixed(2)}</p>
+            <label class="block mt-2">
+              Qty:
+              <input type="number" min="1" value="${item.quantity}" data-index="${index}" class="qty-input border px-2 w-16 rounded">
+            </label>
+            <p class="text-gray-600 mt-2">Total: $${itemTotal.toFixed(2)}</p>
+          </div>
+        </div>
+        <button data-index="${index}" class="delete-btn bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Delete</button>
+      `;
+
+      cartItemsContainer.appendChild(div);
+    });
+
+    totalAmountEl.textContent = total.toFixed(2);
+    attachEvents();
+  }
+
+  function attachEvents() {
+    // Quantity change event
+    document.querySelectorAll('.qty-input').forEach(input => {
+      input.addEventListener('input', e => {
+        const index = parseInt(e.target.dataset.index);
+        let newQty = parseInt(e.target.value);
+        if (isNaN(newQty) || newQty < 1) newQty = 1;
+        cart[index].quantity = newQty;
+
+        // Update localStorage and re-render cart
+        localStorage.setItem('cart', JSON.stringify(cart));
+        renderCart();
+
+        // Also update total quantity badge on index page via localStorage
+        const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
+        localStorage.setItem('cartTotal', totalQty);
+      });
+    });
+
+    // Delete item event
+    document.querySelectorAll('.delete-btn').forEach(btn => {
+      btn.addEventListener('click', e => {
+        const index = parseInt(e.target.dataset.index);
+        cart.splice(index, 1);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        renderCart();
+
+        const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
+        localStorage.setItem('cartTotal', totalQty);
+      });
+    });
+  }
+
+  // Clear Cart Button
+  clearBtn.addEventListener("click", () => {
+    localStorage.removeItem("cart");
+    localStorage.removeItem("cartTotal");
+    cart = [];
+    renderCart();
+    alert("Cart has been cleared!");
+  });
+
+  renderCart();
+</script>
+
+
+
+
+</body>
+</html>
