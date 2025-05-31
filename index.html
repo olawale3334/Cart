@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./dist/style.css" />
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/dist/style.css" />
     <title>CART</title>
   </head>
   <body>
@@ -401,6 +402,124 @@
         </div>
     </div>
 </section> 
+<footer>
+  <div class="bg-[#121721] text-white">
+      <div class=" container mx-auto py-4 px-4">
+         <div class=" mx-10 gap-5 grid grid-cols-2 md:grid-cols-3  lg:flex lg:justify-between  ">
+            <!--first-->
+            <div>
+              <h1 class="font-bold mb-5">ULTIMATE</h1>
+              
+                <ul>
+                  <li><a href="" class="">
+                    NO 52
+                 </a>
+                 <li><a href="" class="">
+                      Rayfield, ON
+                 </a>
+                 <li><a href="" class="">
+                        Jos, Plateau State
+                    </a>
+                    <li><a href="" class="">
+                    Nigeria
+                 </a>
+                </ul>
+            </div>
+               <!--second-->
+            <div>
+              <h1 class="font-bold mb-5">Quick Links</h1>
+              
+                <ul>
+                  <li><a href="" class="">
+                   home
+                 </a>
+                 <li><a href="" class="">
+                   how it works
+                 </a>
+                 <li><a href="" class="">
+                    shop
+                    </a>
+                    <li><a href="" class="">
+                    DOWNLOAD
+                 </a>
+                </ul>
+            </div>
+
+               <!--third-->
+               <div>
+                <h1 class="font-bold mb-5">HELP</h1>
+                
+                  <ul>
+                    <li><a href="" class="">
+                     fAQS
+                   </a>
+                   <li><a href="" class="">
+                      Support Center
+                   </a>
+                   <li><a href="" class="">
+                    Shipping and Sales
+                      </a>
+                     
+                   
+                  </ul>
+              </div>
+
+                 <!--fourth-->
+            <div>
+              <h1 class="font-bold mb-5">information</h1>
+              
+                <ul>
+                  <li><a href="" class="">
+                 About us
+                 </a>
+                 <li><a href="" class="">
+                    work with us
+                 </a>
+                 <li><a href="" class="">
+                    policy and privacy
+                    </a>
+                    <li><a href="" class="">
+                   terms of use
+                 </a>
+                 <li><a href="" class="">
+                  terms of sales
+                </a>
+                <li><a href="" class="">
+                  press kit
+                </a>
+                </ul>
+            </div>
+            <!--fifth-->
+            <div>
+             <h1 class="font-bold mb-5 w-full">Subscribe to Ultimate </h1>
+             <div class="hidden md:block ">
+              <p class="">Master productivity with Creative Console and get all <br> the latest Monogram news.</p>
+             <div class="flex gap-2 mt-3">
+              <input class=" py-2" type="text" placeholder="Email Address">
+              <button class=" px-5 py-2 bg-[#ffe900]  text-black rounded-full">submit</button>
+             </div>
+             </div>
+               <div class="mt-3  mb-3 flex gap-3">
+                <a href="https://x.com/olawale3334"><i class='bx bxl-twitter text-[50px]'></i></a>
+                <i class='bx bxl-facebook-square text-[50px]'></i>
+                <i class='bx bxl-discord-alt text-[50px]'></i>
+                <i class='bx bxl-linkedin text-[50px]'></i>
+               </div>
+                 &copy;Ultimate 2025
+
+
+            </div>
+  
+
+         <!---->
+         </div>
+         
+
+      </div>
+
+   
+  </div>
+</footer>
    <script>
    const hamburger = document.getElementById("menu-btn");
     const menu = document.getElementById("mobile-menu"); 
@@ -417,7 +536,7 @@ const mobileCartValue = document.querySelector('#mobile-menu #cartValue');
 
 
 let total = localStorage.getItem('cartTotal') ? parseInt(localStorage.getItem('cartTotal')) : 0;
-cartValue.textContent = `(${total})`;
+cartValue.textContent = `${total}`;
 mobileCartValue.textContent = `cart(${total})`;
 
 
@@ -450,8 +569,8 @@ addBtns.forEach((addBtn, index) => {
 
     total += quantity;
     localStorage.setItem('cartTotal', total);
-    cartValue.textContent = `(${total})`;
-    mobileCartValue.textContent = `${total}`;
+    cartValue.textContent = `${total}`;
+    mobileCartValue.textContent = `cart(${total})`;
    
 
    addBtn.textContent = "Added!";
